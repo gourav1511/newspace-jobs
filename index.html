@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NewSpace Job Listings</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Weekly NewSpace Job Listings</h1>
+      <p>
+        This dashboard collects open roles from companies operating in the
+        NewSpace and broader space sectors. Listings are refreshed every
+        Saturday at 11:30&nbsp;AM&nbsp;IST (8:00&nbsp;AM&nbsp;CET) to bring you
+        opportunities that match your target experience and location.
+      </p>
+    </header>
+    <main>
+      <table id="jobs-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Experience</th>
+            <th>Location</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody id="jobs-tbody"></tbody>
+      </table>
+    </main>
+    <footer>
+      <p>
+        The table above is populated from the <code>jobs.csv</code> file in this
+        project. To add new roles, edit that file or connect the page to a
+        Google&nbsp;Sheet published in CSV format. See the instructions in the
+        README for details.
+      </p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+/* Basic styling for the job dashboard */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #005792;
+  color: #fff;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+main {
+  padding: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background-color: #efefef;
+  font-weight: bold;
+}
+
+a {
+  color: #005792;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #eee;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
