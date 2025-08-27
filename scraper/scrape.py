@@ -8,16 +8,15 @@ from bs4 import BeautifulSoup
 
 # --- your existing regex filters (kept as-is) ---
 ROLE_INCLUDE = [
-    re.compile(r"engineer", re.I),
-    re.compile(r"scientist", re.I),
-    re.compile(r"developer", re.I),
-    re.compile(r"analyst", re.I),
     re.compile(r"manager", re.I),
-    re.compile(r"intern", re.I),
+    re.compile(r"project", re.I),
+    re.compile(r"solutions engineer", re.I),
+    re.compile(r"customer success", re.I),
+    re.compile(r"manager", re.I),
+    re.compile(r"sales", re.I),
 ]
 ROLE_EXCLUDE = [
     re.compile(r"marketing", re.I),
-    re.compile(r"sales", re.I),
     re.compile(r"finance", re.I),
 ]
 
