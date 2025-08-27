@@ -1,6 +1,6 @@
 // Robust CSV → HTML table for GitHub Pages
 document.addEventListener("DOMContentLoaded", () => {
-  const CSV_URL = new URL("jobs.csv?ts=" + Date.now(), document.baseURI).toString();
+  const CSV_URL = new URL("scraper/Jobs.csv?ts=" + Date.now(), document.baseURI).toString();
   const TABLE_ID = "jobs-table";
   const PREFERRED_ORDER = ["Company", "Role", "Experience", "Location", "Link"];
 
