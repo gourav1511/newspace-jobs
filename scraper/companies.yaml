@@ -1,0 +1,123 @@
+companies:
+  - name: GomSpace
+    careers_url: "https://gomspace.com/career.aspx"        # TODO verify
+    countries: ["Denmark", "Luxembourg", "Sweden"]
+
+  - name: AAC Clyde Space
+    careers_url: "https://www.aac-clyde.space/careers"     # TODO verify
+    countries: ["United Kingdom", "Sweden"]
+
+  - name: Astroscale
+    careers_url: "https://astroscale.com/careers/"         # TODO verify
+    countries: ["United Kingdom", "Germany"]
+
+  - name: ClearSpace
+    careers_url: "https://clearspace.today/careers/"       # TODO verify
+    countries: ["Switzerland", "United Kingdom", "France"]
+
+  - name: EnduroSat
+    careers_url: "https://careers.endurosat.com/"          # TODO verify
+    countries: ["Bulgaria"]
+
+  - name: Surrey Satellite Technology Limited
+    careers_url: "https://www.sstl.co.uk/careers"          # TODO verify
+    countries: ["United Kingdom"]
+
+  - name: Space Forge
+    careers_url: "https://spaceforge.com/careers"          # TODO verify
+    countries: ["United Kingdom"]
+
+  - name: Open Cosmos
+    careers_url: "https://www.open-cosmos.com/careers"     # TODO verify
+    countries: ["United Kingdom", "Portugal", "Spain"]
+
+  - name: OroraTech
+    careers_url: "https://ororatech.com/careers/"          # TODO verify
+    countries: ["Germany"]
+
+  - name: Morpheus Space
+    careers_url: "https://morpheus-space.com/careers"      # TODO verify
+    countries: ["Germany"]
+
+  - name: The Exploration Company
+    careers_url: "https://exploration.space/careers"       # TODO verify
+    countries: ["Germany", "France"]
+
+  - name: Vyoma
+    careers_url: "https://www.vyoma.space/careers"         # TODO verify
+    countries: ["Germany"]
+
+  - name: Rocket Factory Augsburg
+    careers_url: "https://www.rfa.space/careers"           # TODO verify
+    countries: ["Germany"]
+
+  - name: Space DOTS
+    careers_url: "https://spacedots.eu/careers"            # TODO verify
+    countries: ["United Kingdom", "EU"]
+
+  - name: ICEYE
+    careers_url: "https://www.iceye.com/careers"           # TODO verify
+    countries: ["Finland", "Poland", "United Kingdom"]
+
+  - name: D-Orbit
+    careers_url: "https://jobs.dorbit.space/"              # TODO verify
+    countries: ["Italy", "Portugal", "United Kingdom"]
+
+  - name: OneWeb
+    careers_url: "https://jobs.oneweb.net/"                # TODO verify
+    countries: ["United Kingdom"]
+
+  - name: Inmarsat
+    careers_url: "https://www.inmarsat.com/en/careers.html" # TODO verify
+    countries: ["United Kingdom"]
+
+  - name: Airbus Space
+    careers_url: "https://www.airbus.com/en/careers"       # TODO verify
+    countries: ["Germany", "France", "United Kingdom"]
+
+  - name: OHB SE
+    careers_url: "https://ohb.de/en/career"                # TODO verify
+    countries: ["Germany", "Luxembourg"]
+
+  - name: Exolaunch
+    careers_url: "https://exolaunch.com/careers"           # TODO verify
+    countries: ["Germany"]
+
+  - name: NanoAvionics
+    careers_url: "https://nanoavionics.com/company/careers/" # TODO verify
+    countries: ["Lithuania", "United Kingdom"]
+
+roles:
+  include:
+    - "project manager"
+    - "program manager"
+    - "customer success"
+    - "customer solutions"
+    - "solutions engineer"
+    - "sales engineer"
+    - "applications engineer"
+  exclude:
+    - "senior director"
+    - "head of"
+    - "intern"
+    - "working student"
+    - "principal"
+
+experience:
+  min_years: 1
+  max_years: 7
+  patterns:
+    - "\\b(2|3|4|5)\\+?\\s*years?\\b"
+    - "\\b2\\s*-\\s*5\\s*years?\\b"
+    - "\\bmid\\s*level\\b"
+
+locations_priority:
+  - "Germany"
+  - "United Kingdom"
+  - "Norway"
+  - "Sweden"
+  - "Finland"
+  - "Denmark"
+  - "Luxembourg"
+  - "France"
+  
