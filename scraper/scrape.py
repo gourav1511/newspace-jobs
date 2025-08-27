@@ -2,21 +2,25 @@ import csv
 import re
 import sys
 import time
+from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit, urlencode, parse_qsl
+
 import requests
+import yaml
 from bs4 import BeautifulSoup
 
-# --- your existing regex filters (kept as-is) ---
+# --- regex filters for roles ---
 ROLE_INCLUDE = [
+    re.compile(r"engineer", re.I),
+    re.compile(r"scientist", re.I),
+    re.compile(r"developer", re.I),
+    re.compile(r"analyst", re.I),
     re.compile(r"manager", re.I),
-    re.compile(r"project", re.I),
-    re.compile(r"solutions engineer", re.I),
-    re.compile(r"customer success", re.I),
-    re.compile(r"manager", re.I),
-    re.compile(r"sales", re.I),
+    re.compile(r"intern", re.I),
 ]
 ROLE_EXCLUDE = [
     re.compile(r"marketing", re.I),
+    re.compile(r"sales", re.I),
     re.compile(r"finance", re.I),
 ]
 
@@ -30,12 +34,12 @@ LOC_PRIORITY = {
     "United States": 5,
 }
 
-# --- helpers ---
+# --- helpers for dedup & cleanup ---
 TRACKING_PARAMS = {"utm_source", "utm_medium", "utm_campaign",
                    "utm_term", "utm_content", "gclid", "fbclid"}
 
 def normalize_url(u: str) -> str:
-    """Strip hash + common tracking params + trailing slash for consistent de-dup keys."""
+    """Strip hash + tracking params + trailing slash for consistent de-dup keys."""
     try:
         s = urlsplit(u)
         q = [(k, v) for (k, v) in parse_qsl(s.query, keep_blank_values=True)
@@ -49,19 +53,18 @@ def normalize_url(u: str) -> str:
 def clean_title(t: str) -> str:
     """Collapse whitespace; trim verbose descriptions."""
     t = " ".join((t or "").split())
-    cut_tokens = [" learn more", " read more", " apply now", " see more"]
     tl = t.lower()
-    for tok in cut_tokens:
+    for tok in [" learn more"," read more"," apply now"," see more"]:
         i = tl.find(tok)
         if i > 0:
-            t = t[:i].strip()
+            t, tl = t[:i].strip(), t[:i].strip().lower()
             break
-    if len(t) > 120:  # hard cap
+    if len(t) > 120:
         t = t[:120].rstrip() + "…"
     return t
 
 def better_title(a: str, b: str) -> str:
-    """Choose the more 'title-like' string for same URL."""
+    """Pick the more 'title-like' string for same URL."""
     a, b = (a or "").strip(), (b or "").strip()
     if not a: return b
     if not b: return a
@@ -89,16 +92,16 @@ def extract_links(base_url: str, html: str):
     soup = BeautifulSoup(html, "lxml")
     candidates = []
 
-    # 1) Direct anchors
+    # 1) Anchors
     for a in soup.find_all("a", href=True):
         title = " ".join(a.get_text(" ", strip=True).split())
         href = urljoin(base_url, a["href"])
         if not title:
             continue
-        if any(p.search(title) for p in ROLE_INCLUDE) and not any(p.search(title) for p in ROLE_EXCLUDE):
+        if text_ok(title):
             candidates.append((clean_title(title), href))
 
-    # 2) Job-card-like elements
+    # 2) Job-card elements
     for el in soup.select("[class*='job'], [class*='career'], [class*='position']"):
         t = " ".join(el.get_text(" ", strip=True).split())
         if t and text_ok(t):
@@ -117,23 +120,20 @@ def extract_links(base_url: str, html: str):
 
     return [(title, url) for url, title in by_url.items()]
 
+# --- config loader ---
+def load_config():
+    with open(Path(__file__).parent / "companies.yaml", "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
 # --- main ---
 def main():
-    cfg = {
-        "companies": [
-            # Example entries; expand as needed
-            {"name": "AAC Clyde Space", "careers_url": "https://aac-clyde.space/careers", "countries": ["Sweden", "UK"]},
-            {"name": "Spire", "careers_url": "https://spire.com/careers", "countries": ["Luxembourg", "USA", "UK"]},
-            # add more...
-        ]
-    }
-
+    cfg = load_config()
     rows = []
     seen_links = set()
 
     for c in cfg["companies"]:
         name = c["name"]
-        url = c["careers_url"]
+        url = c.get("careers_url")
         countries = c.get("countries", [])
 
         if not url:
@@ -151,11 +151,10 @@ def main():
                 continue
             seen_links.add(key)
 
-            text = f"{title} {href}"
-            if not text_ok(text):
+            if not text_ok(title + " " + href):
                 continue
-            country_guess = pick_country(text, countries)
 
+            country_guess = pick_country(title + " " + href, countries)
             if country_guess and country_guess not in LOC_PRIORITY:
                 continue
 
@@ -169,8 +168,10 @@ def main():
 
         time.sleep(0.5)
 
-    with open("Jobs.csv", "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Company", "Role", "Experience", "Location", "Link"])
+    # Write output to jobs.csv at repo root
+    out_path = Path(__file__).resolve().parents[1] / "scraper" / "Jobs.csv"
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["Company","Role","Experience","Location","Link"])
         writer.writeheader()
         writer.writerows(rows)
 
