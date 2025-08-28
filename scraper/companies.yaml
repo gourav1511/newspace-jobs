@@ -87,7 +87,13 @@ roles:
     - "customer solutions"
     - "solutions engineer"
     - "sales engineer"
-    - "applications engineer"
+    - "business development"
+    - "customer project manager"
+    - "systems engineer"
+    - "Spacecraft Project Manager"
+    - "Strategic Partnerships Manager"
+    - "Mission Manager"
+
   exclude:
     - "senior director"
     - "head of"
