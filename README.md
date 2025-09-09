@@ -1,62 +1,45 @@
-## Job Board Dashboard
+# NewSpace Job Board Dashboard
 
-This simple website provides a lightweight dashboard for weekly job updates. It’s
-designed with non‑technical users in mind: you only need to update a CSV file or
-publish a Google&nbsp;Sheet to keep the listings current. The page itself remains
-static and automatically loads whatever is in the `jobs.csv` file.
+This repository hosts a static website that displays weekly job openings from NewSpace companies. The page itself is static; job data is loaded at runtime from a CSV file.
 
-### Files
+## How it works
 
-* **index.html** – The main webpage that displays the job table.
-* **style.css** – Basic styling for the layout and table.
-* **script.js** – JavaScript that reads data from `jobs.csv` and populates the
-  table. In the initial version of this site we have already configured
-  `script.js` to load data from your published Google Sheet. If you
-  publish a different Sheet later, edit the `fetch(...)` call in
-  `script.js` accordingly.
-* **jobs.csv** – A comma‑separated file containing one row per job. The first
-  line is the header (`Company,Role,Experience,Location,Link`). Each
-  subsequent row must have values enclosed in quotes if they contain commas.
+- `script.js` fetches `scraper/Jobs.csv` with a cache-busting query string and renders it as an HTML table. Columns appear based on the headers present in the CSV, so optional fields like Experience or Location show up only when they exist.
+- `scraper/` contains a Python scraper that crawls company career pages listed in `scraper/companies.yaml` and writes a minimal `Jobs.csv` file (Company, Role, Link).
+- A scheduled GitHub Actions workflow (`.github/workflows/scrape.yml`) runs the scraper every Saturday around 08:00 CET/CEST and commits updated data back to the repository.
 
-### Updating the listings
+## Repository structure
 
-1. Edit **jobs.csv** with a text editor or spreadsheet application. Each row
-   should include:
-   - Company name.
-   - Role title (e.g., *Project Manager*).
-   - Desired experience range (e.g., *2+ years – 5 years*).
-   - Location (e.g., *Munich, Germany*).
-   - A URL pointing directly to the job posting on the employer’s website.
-2. Save the file in CSV format and replace the existing `jobs.csv` in the
-   site folder.
-3. When you open `index.html` in a browser, the table will reflect the new
-   entries automatically.
+- `index.html` – main web page.
+- `style.css` – simple styling.
+- `script.js` – CSV loading and table rendering logic; edit the `CSV_URL` constant if you want to load data from a different CSV or a published Google Sheet.
+- `scraper/` – Python code and configuration for automated scraping:
+  - `scraper/companies.yaml` – list of companies and role filters.
+  - `scraper/scrape.py` – script that outputs `scraper/Jobs.csv`.
+  - `scraper/requirements.txt` – Python dependencies.
+- `jobs.csv` – example data file from the early version of the project. It is not used by default but can serve as a template if you prefer manual updates.
 
-### Pulling from Google Sheets (optional)
+## Updating the listings
 
-If you prefer to manage data in a Google Sheet instead of a local CSV file,
-follow these steps:
+### Automatic scrape
 
-1. Create a new Google Sheet and insert your job data using the same
-   column order as `jobs.csv` (Company, Role, Experience, Location, Link).
-2. From the Sheet menu, choose **File → Share → Publish to web**. Publish the
-   entire sheet as a **Comma Separated Values (CSV)** format. Google will give
-   you a link ending with `output=csv`.
-3. In **script.js**, replace `fetch('jobs.csv')` with `fetch('URL')`, where
-   `URL` is the link from step 2. The site will now load data from the Sheet
-   directly.
+1. Install Python dependencies:
+   ```sh
+   pip install -r scraper/requirements.txt
+   ```
+2. Adjust `scraper/companies.yaml` to define which companies to scan and any role filters.
+3. Run the scraper:
+   ```sh
+   python scraper/scrape.py
+   ```
+   This overwrites `scraper/Jobs.csv` with fresh listings.
+4. Open `index.html` in a browser; the page will show the updated table.
 
-### Automating weekly updates
+### Using a custom CSV or Google Sheet
 
-Google Sheets automatically recalculates and refreshes data from import
-functions like `IMPORTXML` or `IMPORTFEED` roughly every hour【462126922950035†L122-L127】, so you
-can use built‑in formulas to scrape company career pages each week. For example,
-Ben Collins’ tutorial shows how you can pull structured data from a website
-into a sheet with the `IMPORTXML` function【16327416756003†L34-L41】. By combining such formulas with
-a time‑driven Google Apps Script trigger, your Sheet can automatically collect
-new listings every Saturday at 11:30 AM IST and then populate the dashboard.
+If you prefer to curate listings manually, publish a Google Sheet (or provide another CSV) and update the `CSV_URL` in `script.js` to point at it. The table will adapt to whatever columns your file provides.
 
-When you are ready to share your dashboard publicly, upload these files to a
-hosting service such as GitHub Pages, Netlify, or your own domain. Because the
-site is static, no server‑side code is needed, and hosting is free on many
-platforms.
+## Hosting
+
+Because the site is static, it can be hosted on GitHub Pages, Netlify, or any other static hosting service.
+
