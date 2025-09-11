@@ -1,83 +1,144 @@
 companies:
   - name: GomSpace
     careers_url: "https://gomspace.com/open-positions.aspx"        # TODO verify
-    countries: ["Denmark", "Luxembourg", "Sweden"]
 
   - name: AAC Clyde Space
     careers_url: "https://www.aac-clyde.space/careers"     # TODO verify
-    countries: ["United Kingdom", "Sweden"]
 
   - name: Astroscale
     careers_url: "https://www.astroscale.com/en/careers"         # TODO verify
-    countries: ["United Kingdom", "Germany"]
 
   - name: ClearSpace
     careers_url: "https://clearspace.odoo.com/fr/jobs"       # TODO verify
-    countries: ["Switzerland", "United Kingdom", "France"]
 
   - name: EnduroSat
     careers_url: "https://www.endurosat.com/careers/"          # TODO verify
-    countries: ["Bulgaria"]
 
   - name: Surrey Satellite Technology Limited
     careers_url: "https://jobs.sstl.co.uk/#jobs"          # TODO verify
-    countries: ["United Kingdom"]
 
   - name: Space Forge
     careers_url: "https://spaceforge.com/careers"          # TODO verify
-    countries: ["United Kingdom"]
 
   - name: Open Cosmos
     careers_url: "https://careers.open-cosmos.com/jobs"     # TODO verify
-    countries: ["United Kingdom", "Portugal", "Spain"]
 
   - name: OroraTech
     careers_url: "https://ororatech.com/company/careers"          # TODO verify
-    countries: ["Germany"]
 
   - name: Morpheus Space
     careers_url: "https://careers.morpheus.space/"      # TODO verify
-    countries: ["Germany"]
 
   - name: The Exploration Company
     careers_url: "https://www.exploration.space/careers#job-application"       # TODO verify
-    countries: ["Germany", "France"]
 
   - name: Vyoma
     careers_url: "https://vyoma-gmbh.jobs.personio.de/"         # TODO verify
-    countries: ["Germany"]
 
   - name: Rocket Factory Augsburg
     careers_url: "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb&cfdd[0][id]=74&cfdd[0][options][0]=403"           # TODO verify
-    countries: ["Germany"]
 
   - name: ICEYE
     careers_url: "https://www.iceye.com/careers"           # TODO verify
-    countries: ["Finland", "Poland", "United Kingdom"]
 
   - name: D-Orbit
     careers_url: "https://careers.dorbit.space/jobs.php"              # TODO verify
-    countries: ["Italy", "Portugal", "United Kingdom"]
 
   - name: OneWeb
     careers_url: "https://careers.eutelsat.com/search/"                # TODO verify
-    countries: ["United Kingdom"]
 
   - name: Airbus Space
     careers_url: "https://ag.wd3.myworkdayjobs.com/Airbus"       # TODO verify
-    countries: ["Germany", "France", "United Kingdom"]
 
   - name: OHB SE
     careers_url: "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb&cfdd[0][id]=16&cfdd[0][options][0]=29&lang=en-GB"                # TODO verify
-    countries: ["Germany", "Luxembourg"]
 
   - name: Exolaunch
     careers_url: "https://exolaunch.com/careers.html"           # TODO verify
-    countries: ["Germany"]
 
   - name: NanoAvionics
     careers_url: "https://nanoavionics.com/our-careers/#open-positions" # TODO verify
-    countries: ["Lithuania", "United Kingdom"]
+
+  - name: Yuri
+    careers_url: "https://yuri.jobs.personio.de/"        # TODO verify
+
+  - name: Leanspace
+    careers_url: "https://leanspace.io/careers/"        # TODO verify
+
+  - name: ThrustMe
+    careers_url: "https://careers.thrustme.fr/#jobs"        # TODO verify
+
+  - name: Constellr
+    careers_url: "https://constellr.recruitee.com/"        # TODO verify
+
+  - name: Reflex Aerospace
+    careers_url: "https://reflex-aerospace-gmbh.jobs.personio.de/"        # TODO verify
+
+  - name: Latitude
+    careers_url: "https://www.latitude.eu/jobs/"        # TODO verify
+
+  - name: Exotrail
+    careers_url: "https://www.exotrail.com/careers"        # TODO verify
+
+  - name: Orbex
+    careers_url: "https://orbex.space/work-with-us/current-vacancies"        # TODO verify
+
+  - name: Orbit Fab
+    careers_url: "https://ats.rippling.com/orbitfab/jobs"        # TODO verify
+
+  - name: Rivada Space Networks
+    careers_url: "https://rivada-space-networks-gmbh.jobs.personio.de/?language=en"        # TODO verify
+
+  - name: Mynaric
+    careers_url: "https://mynaric.jobs.personio.de/?language=en"        # TODO verify
+
+  - name: SatVu
+    careers_url: "https://apply.workable.com/satellitevu/#jobs"        # TODO verify
+
+  - name: Airmo
+    careers_url: "https://www.airmo.io/careers#positions"        # TODO verify
+
+  - name: Space Locker
+    careers_url: "https://spacelocker.fr/careers/"        # TODO verify
+
+  - name: ATMOS Space Cargo
+    careers_url: "https://atmos-space-cargo.com/careers/"        # TODO verify
+
+  - name: OQ Technology
+    careers_url: "https://www.oqtec.space/careers"        # TODO verify
+
+  - name: Spire
+    careers_url: "https://spire.com/careers/job-openings/"        # TODO verify
+
+  - name: ISIS Space
+    careers_url: "https://careers.isispace.nl/"        # TODO verify
+
+  - name: Loft Orbital
+    careers_url: "https://jobs.lever.co/loftorbital/"        # TODO verify
+
+  - name: Dawn Aerospace
+    careers_url: "https://dawnaerospace.bamboohr.com/careers"        # TODO verify
+
+  - name: DSI Aerospace
+    careers_url: "https://www.dsi.space/professionals/"        # TODO verify
+
+  - name: Lumi Space
+    careers_url: "https://jobs.lever.co/lumispace"        # TODO verify
+
+  - name: Spaceflux
+    careers_url: "https://spaceflux.io/careers/"        # TODO verify
+
+  - name: Slingshot Aerospace
+    careers_url: "https://www.slingshot.space/careers#open-positions"        # TODO verify
+
+  - name: Lunasa Space
+    careers_url: "https://lunasaspace.com/careers/"        # TODO verify
+
+  - name: EutelSat OneWeb
+    careers_url: "https://careers.eutelsat.com/search/"        # TODO verify
+
+  - name: Space Solar
+    careers_url: "https://www.spacesolar.co.uk/careers/project-management-roles/"        # TODO verify
 
 roles:
   include:
