@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const CSV_URL = new URL("scraper/Jobs.csv?ts=" + Date.now(), document.baseURI).toString();
   const TABLE_ID = "jobs-table";
-  const PREFERRED_ORDER = ["Company", "Role", "Experience", "Location", "Link"];
+  const PREFERRED_ORDER = ["Company", "Role", "Link"];
 
   function parseCSV(text) {
     const out = [];

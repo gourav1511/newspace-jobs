@@ -4,7 +4,7 @@ This repository hosts a static website that displays weekly job openings from Ne
 
 ## How it works
 
-- `script.js` fetches `scraper/Jobs.csv` with a cache-busting query string and renders it as an HTML table. Columns appear based on the headers present in the CSV, so optional fields like Experience or Location show up only when they exist.
+- `script.js` fetches `scraper/Jobs.csv` with a cache-busting query string and renders it as an HTML table. Columns appear based on the headers present in the CSV, so any additional fields you include will show up automatically.
 - `scraper/` contains a Python scraper that crawls company career pages listed in `scraper/companies.yaml` and writes a minimal `Jobs.csv` file (Company, Role, Link).
 - A scheduled GitHub Actions workflow (`.github/workflows/scrape.yml`) runs the scraper every Saturday around 08:00 CET/CEST and commits updated data back to the repository.
 
