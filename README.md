@@ -14,10 +14,10 @@ This repository hosts a static website that displays weekly job openings from Ne
 - `style.css` – simple styling.
 - `script.js` – CSV loading and table rendering logic; edit the `CSV_URL` constant if you want to load data from a different CSV or a published Google Sheet.
 - `scraper/` – Python code and configuration for automated scraping:
+  - `scraper/Jobs.csv` – generated job listings.
   - `scraper/companies.yaml` – list of companies and role filters.
   - `scraper/scrape.py` – script that outputs `scraper/Jobs.csv`.
   - `scraper/requirements.txt` – Python dependencies.
-- `jobs.csv` – example data file from the early version of the project. It is not used by default but can serve as a template if you prefer manual updates.
 
 ## Updating the listings
 
