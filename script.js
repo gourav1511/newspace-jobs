@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
       buildTable(headers, rows.slice(1));
     })
     .catch(err => {
-      console.error("Failed to load jobs.csv:", err);
+      console.error("Failed to load scraper/Jobs.csv:", err);
       const t = ensureTable();
-      t.innerHTML = "<caption>Failed to load jobs.csv</caption>";
+      t.innerHTML = "<caption>Failed to load scraper/Jobs.csv</caption>";
     });
 });
