@@ -1,6 +1,7 @@
 // Robust CSV → HTML table for GitHub Pages
 document.addEventListener("DOMContentLoaded", () => {
-  const CSV_URL = new URL("scraper/Jobs.csv?ts=" + Date.now(), document.baseURI).toString();
+  const CSV_FILE = "scraper/Jobs.csv";
+  const CSV_URL = new URL(`${CSV_FILE}?ts=${Date.now()}`, document.baseURI).toString();
   const TABLE_ID = "jobs-table";
   const PREFERRED_ORDER = ["Company", "Role", "Experience", "Location", "Link"];
 
@@ -83,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
       buildTable(headers, rows.slice(1));
     })
     .catch(err => {
-      console.error("Failed to load jobs.csv:", err);
+      console.error(`Failed to load ${CSV_FILE}:`, err);
       const t = ensureTable();
-      t.innerHTML = "<caption>Failed to load jobs.csv</caption>";
+      t.innerHTML = `<caption>Failed to load ${CSV_FILE}</caption>`;
     });
 });
