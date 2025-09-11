@@ -68,7 +68,7 @@ companies:
     countries: ["Germany", "France", "United Kingdom"]
 
   - name: OHB SE
-    careers_url: "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb&cfdd[0][id]=16&cfdd[0][options][0]=29&lang=en-GB"                # TODO verify
+    careers_url: "https://career-ohb.csod.com/ux/ats/careersite/4/home?c=career-ohb&cfdd[0][id]=16&cfdd[0][options][0]=29&lang=en-GB"  # TODO verify
     countries: ["Germany", "Luxembourg"]
 
   - name: Exolaunch
