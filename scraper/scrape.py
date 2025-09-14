@@ -207,7 +207,11 @@ def extract_links_static(base_url: str, html: str, include_pats, exclude_pats):
 def list_greenhouse(board: str):
     """Greenhouse public API: https://boards-api.greenhouse.io/v1/boards/{board}/jobs"""
     url = f"https://boards-api.greenhouse.io/v1/boards/{board}/jobs"
-    data = fetch_json(url)
+    try:
+        data = fetch_json(url)
+    except requests.exceptions.RequestException as e:
+        print(f"[warn] greenhouse[{board}]: fetch failed: {e}", file=sys.stderr)
+        return []
     out = []
     for job in data.get("jobs", []):
         title = clean_title(job.get("title") or "")
@@ -219,7 +223,11 @@ def list_greenhouse(board: str):
 def list_lever(company: str):
     """Lever public API: https://api.lever.co/v0/postings/{company}?mode=json"""
     url = f"https://api.lever.co/v0/postings/{company}?mode=json"
-    data = fetch_json(url)
+    try:
+        data = fetch_json(url)
+    except requests.exceptions.RequestException as e:
+        print(f"[warn] lever[{company}]: fetch failed: {e}", file=sys.stderr)
+        return []
     out = []
     for job in data:
         title = clean_title(job.get("text") or job.get("title") or "")
@@ -237,7 +245,11 @@ def list_personio(subdomain: str):
     This function handles both and normalizes (title, link).
     """
     url = f"https://{subdomain}.jobs.personio.de/search.json"
-    data = fetch_json(url)
+    try:
+        data = fetch_json(url)
+    except requests.exceptions.RequestException as e:
+        print(f"[warn] personio[{subdomain}]: fetch failed: {e}", file=sys.stderr)
+        return []
 
     # Normalize to a list of postings
     if isinstance(data, dict):
@@ -283,7 +295,11 @@ def list_personio(subdomain: str):
 def list_recruitee(subdomain: str):
     """Recruitee public API: https://{sub}.recruitee.com/api/offers/"""
     url = f"https://{subdomain}.recruitee.com/api/offers/"
-    data = fetch_json(url)
+    try:
+        data = fetch_json(url)
+    except requests.exceptions.RequestException as e:
+        print(f"[warn] recruitee[{subdomain}]: fetch failed: {e}", file=sys.stderr)
+        return []
     out = []
     for item in data.get("offers", []):
         title = clean_title(item.get("title") or "")
@@ -365,7 +381,11 @@ def main():
 
         # 2) If nothing found, try ATS adapters (explicit or auto-detect)
         if not items:
-            items = list_from_ats(ats_cfg, html)
+            try:
+                items = list_from_ats(ats_cfg, html)
+            except requests.exceptions.RequestException as e:
+                print(f"[warn] {name}: ATS fetch failed: {e}", file=sys.stderr)
+                continue
 
         # Filter by include/exclude again (for ATS results) and de-dup by URL
         for title, href in items:
